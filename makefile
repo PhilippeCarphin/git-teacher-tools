@@ -3,6 +3,10 @@ prefix=$(1995_dir)/repos
 command=$(1995_dir)/init-correction-inf1995.sh
 1995_dir=./inf1995-stuff
 bad_command=afwerwert bonjour allo
+
+all:
+	@echo "this makefile is only used for executing test commands"
+	@exit 1
 test-cloner:
 	./git-cloner --repo-file $(file) --prefix $(prefix) --command $(command)
 
