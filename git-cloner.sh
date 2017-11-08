@@ -5,7 +5,7 @@ function usage(){
 
 USAGE :
 
-  $0 --repo-file repos.txt [--command cmd] [<other-options>]
+  $0 [--repo-file repos.txt] [--command cmd] [<other-options>]
 
 DESCRIPTION:
 
@@ -17,6 +17,17 @@ DESCRIPTION:
 
         target_dir : Optionnal, the target directory that will be used for cloning
                    the repo
+        Lines beginning with '#' will be ignored.
+
+        If no repo-file is specified, the program looks for repo-file.txt in
+        current working directory
+
+        Repofile may contain, as the first line, a line of the form
+
+            # prefix prefix_value
+
+        to specify the sub-directory for cloning.  The option --prefix on the
+        command line overrides this.
 
 OPTIONS:
 
