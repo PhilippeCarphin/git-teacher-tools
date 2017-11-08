@@ -31,6 +31,8 @@ OPTIONS:
 
         --just-print : for experimenting with modifications of this script, print
                    instead of run certain commands
+        --prefix : Subdirectory where the repos are to be cloned. Implicitely
+                   defaults to pwd.
                 "
 }
 
