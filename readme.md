@@ -11,6 +11,22 @@ Ex : la commande
 
 Clone tous les entrepôts listés dans le fichier <repo_file>.  Faire ./git-cloner --help pour plus d'options.
 
+repo-file
+---------
+
+un fichier dont chaque ligne est le URL d'un entrepôt git et optionnellement un nom à donner à l'entrepôt clôné (séparé par un espace).
+
+Ex :
+
+	https://githost.gi.polymtl.ca/git/inf1995-1041 1041
+	https://githost.gi.polymtl.ca/git/inf1995-1225 1225
+
+ou
+    https://githost.gi.polymtl.ca/git/inf1995-1041 
+	https://githost.gi.polymtl.ca/git/inf1995-1225 
+
+Dans le premier cas, l'entrepôt sera clôné dans le dossier 1041 alors que dans le deuxième, ce sera dans inf1995-1041 (le nom donné automatiquement par git).
+
 Exemple d'utilisation pour le cours INF1995:
 ============================================
 
