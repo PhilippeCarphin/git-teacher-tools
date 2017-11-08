@@ -91,7 +91,12 @@ function check_prefix() {
 # script, such a relative path must be converted to an absolute path.
 ################################################################################
 absolutize_cmd(){
-    echo -n "$(which $1)"
+    cmd="$(which $1 2>/dev/null)"
+    if [[ "$cmd" == "" ]] ; then
+        echo ""
+        return
+    fi
+    echo -n "$cmd"
     shift
     if [[ $# -gt 0 ]] ; then
         echo -n " $@"
@@ -116,7 +121,7 @@ do
             shift
             ;;
         --command)
-            command="$(absolutize_cmd $optarg)"
+            command="$optarg"
             shift
             ;;
         --just-print)
@@ -150,6 +155,15 @@ elif [ ! -e "$repo_file" ] ; then
     echo "$0 ERROR : File $repo_file doesn't exit"
     usage
     exit 1
+fi
+
+if [[ "$command" != "" ]] ; then
+    absolute_command=$(absolutize_cmd $command)
+    if [[ "$absolute_command" == "" ]] ; then
+        echo "$0 ERROR : no commando $(echo $command | cut -d ' ' -f 1) in path" >&2
+        usage >&2
+        exit 1
+    fi
 fi
 
 creds=$(git config credential.helper)
