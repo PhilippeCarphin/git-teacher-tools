@@ -1,0 +1,2 @@
+echo "PWD=$PWD"
+ls
