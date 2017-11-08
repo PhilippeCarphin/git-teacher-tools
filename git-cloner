@@ -174,7 +174,9 @@ while read repo target_dir extra; do # < $repo_file
     if [[ "$target_dir" == "" ]] ; then
         target_dir=$(basename $repo)
     fi
-    target_dir="${prefix}/${target_dir}"
+    if [[ "$prefix" != "" ]] ; then
+        target_dir="${prefix}/${target_dir}"
+    fi
     if [ -e $target_dir ] ; then
         echo "$(tput setab 4)$target_dir already exists for $repo$(tput sgr 0)"
         if [[ "$skip_if_existing" == true ]] ; then
