@@ -4,6 +4,6 @@ grep -v "[\t ]*#.*" |
 # \1 <- \([0-9]*\)
 # and replace it by
 # githost.git.polymtl.ca/git/inf1995-\1
-sed 's/[^0-9]*\([0-9]*\)[^0-9]*/githost.gi.polymtl.ca\/git\/inf1995-\1/' |
+sed 's/[^0-9]*\([0-9]*\)[^0-9]*/https:\/\/githost.gi.polymtl.ca\/git\/inf1995-\1/' |
 # remove duplicates
 sort | uniq

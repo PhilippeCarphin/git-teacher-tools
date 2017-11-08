@@ -4,5 +4,5 @@
 
   
       githost.gi.polymtl.ca/git/inf1995-0105 0105 un deux trois quatre                 
-githost.gi.polymtl.ca/git/inf1995-3132 1234
-githost.gi.polymtl.ca/git/inf1995-0105
+https://githost.gi.polymtl.ca/git/inf1995-3132 1234
+https://githost.gi.polymtl.ca/git/inf1995-0105

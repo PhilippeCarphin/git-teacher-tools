@@ -192,7 +192,7 @@ while read repo target_dir extra; do # < $repo_file
     else
         # Do the cloning ##########################################################
         echo "$(tput setab 2)Cloning ${repo} into ${target_dir}$(tput sgr 0)"
-        cmd="git clone https://${user}@${repo} ${target_dir}"
+        cmd="git clone ${repo} ${target_dir}"
         if [[ "$just_print" == true ]] ; then
             echo "$cmd"
         else
