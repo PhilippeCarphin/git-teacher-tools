@@ -209,15 +209,15 @@ while read repo target_dir extra; do # < $repo_file
     fi
 
     # Run command inside repo ##################################################
-    if [[ "$command" != "" ]] ; then
-        echo "$(tput setab 3)Entering directory $target_dir to do $command$(tput sgr 0)" >&2
+    if [[ "$absolute_command" != "" ]] ; then
+        echo "$(tput setab 3)Entering directory $target_dir to do $absolute_command$(tput sgr 0)" >&2
         if [[ "$just_print" == true ]] ; then
             echo "pushd $target_dir"
-            echo "$command"
+            echo "$absolute_command"
             echo "popd"
         else
             if pushd $target_dir >/dev/null 2>&1 ; then
-                $command
+                $absolute_command
                 popd 1>/dev/null
                 echo "$(tput setab 3)Leaving directory $target_dir$(tput sgr 0)" >&2
             else
