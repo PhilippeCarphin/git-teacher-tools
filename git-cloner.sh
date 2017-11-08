@@ -214,8 +214,8 @@ while read repo target_dir extra; do # < $repo_file
         target_dir="${prefix}/${target_dir}"
     fi
     if [ -e $target_dir ] ; then
-        echo "$(tput setab 4)$target_dir already exists for $repo$(tput sgr 0)" >&2
         if [[ "$skip_if_existing" == true ]] ; then
+        echo "$(tput setab 4)$target_dir already exists for $repo$(tput sgr 0)" >&2
             continue
         fi
     else
