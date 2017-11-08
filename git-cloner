@@ -22,8 +22,6 @@ OPTIONS:
 
         --repo-file : the file containing a list of repos to clone
 
-        --user : username for the git repos that will be cloned
-
         --command : we can run a command inside each repository that we clone
 
         --skip-if-existing true/false : if true, cmd will not be run on repos
@@ -102,11 +100,6 @@ absolutize_cmd(){
 
 ################################################################################
 # Parse options:
-# --repo-file : the file containing a list of repos to clone
-# --user : username for the git repos that will be cloned
-# --command : we can run a command inside each repository that we clone
-# --just-print : for experimenting with modifications of this script, print
-#                instead of run certain commands
 ################################################################################
 skip_if_existing=true
 while [[ $# -gt 0 ]]
@@ -120,10 +113,6 @@ do
             ;;
         --repo-file)
             repo_file="$optarg"
-            shift
-            ;;
-        --user)
-            user="$optarg"
             shift
             ;;
         --command)
