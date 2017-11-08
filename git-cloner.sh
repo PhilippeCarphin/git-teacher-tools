@@ -148,9 +148,13 @@ done
 # Check some of the options
 ################################################################################
 if [[ "$repo_file" == "" ]] ; then
-    echo "$0 ERROR : Option --repo-file must be specified" >&2
-    usage
-    exit 1
+    if [[ -e repo-file.txt ]] ; then
+        repo_file=./repo-file.txt
+    else
+        echo "$0 ERROR : no repo-file specified and no default repo-file.txt found."
+        usage
+        exit 1
+    fi
 elif [ ! -e "$repo_file" ] ; then
     echo "$0 ERROR : File $repo_file doesn't exit" >&2
     usage
