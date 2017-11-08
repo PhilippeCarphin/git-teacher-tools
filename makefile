@@ -8,9 +8,13 @@ GC=./git-cloner.sh
 all:
 	@echo "this makefile is only used for executing test commands"
 	@exit 1
+test: test-prefix-in-repo-file
+
 test-cloner:
 	$(GC) --repo-file $(file) --prefix $(prefix) --command $(command)
 
+test-prefix-in-repo-file:
+	$(GC) --repo-file $(1995_dir)/inf1995_teams.txt --command $(command)
 test-filter:
 	./inf1995-stuff/inf1995-team-filter.sh < ./inf1995-stuff/equipes_4.txt
 
