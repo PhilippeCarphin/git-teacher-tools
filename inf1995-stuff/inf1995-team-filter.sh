@@ -1,9 +1,12 @@
 #!/bin/bash
-grep -v "[\t ]*#.*" |
-# Isolate the part of each line that is a string of consecutive digits
-# \1 <- \([0-9]*\)
-# and replace it by
-# githost.git.polymtl.ca/git/inf1995-\1
-sed 's/[^0-9]*\([0-9]*\)[^0-9]*/https:\/\/githost.gi.polymtl.ca\/git\/inf1995-\1/' |
-# remove duplicates
-sort | uniq
+
+team_re='[0-9]*'
+prefix_re='[^0-9]*'
+postfix_re=$prefix_re
+
+teams=$(grep -v "[\t ]*#.*" | sed "s/$prefix_re\($team_re\)$postfix_re/\1/" | sort | uniq)
+
+for t in $teams ; do
+	echo "https://githost.gi.polymtl.ca/git/inf1995-$t $t"
+done
+
