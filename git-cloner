@@ -13,8 +13,8 @@ DESCRIPTION:
 
             <repo-url> <target_dir> ...
 
-        repo-url : the URL of a repo WITHOUT the https:// part because of how I
-                   construct my git command.
+        repo-url : the URL of a repo
+
         target_dir : Optionnal, the target directory that will be used for cloning
                    the repo
 
