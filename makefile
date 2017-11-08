@@ -29,5 +29,7 @@ test-bad-command:
 clean:
 	# Hard coding to avoid mistakes
 	rm -rf ./$(1995_dir)/repos
+	rm -rf ./prefix_in_repo_file
+
 
 

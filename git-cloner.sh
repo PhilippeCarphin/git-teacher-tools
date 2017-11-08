@@ -107,7 +107,6 @@ absolutize_cmd(){
 # Parse options:
 ################################################################################
 skip_if_existing=true
-prefix=./repos
 while [[ $# -gt 0 ]]
 do
     option="$1"
@@ -172,10 +171,17 @@ if [[ $creds == "" ]] ; then
     suggest_credential_helper
 fi
 
-if [[ "$prefix" != "" ]] ; then
-    check_prefix $prefix
+if [[ "$prefix" == "" ]] ; then
+    read a b c <$repo_file
+    if [[ "$a" == '#' ]] ; then
+        if [[ "$b" == prefix ]] ; then
+            prefix=$c
+        fi
+    fi
+else
+    prefix=./repos
 fi
-
+check_prefix $prefix
 ################################################################################
 # For each line do our thing
 ################################################################################
