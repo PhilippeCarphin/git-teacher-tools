@@ -107,6 +107,7 @@ absolutize_cmd(){
 # Parse options:
 ################################################################################
 skip_if_existing=true
+prefix=./repos
 while [[ $# -gt 0 ]]
 do
     option="$1"
