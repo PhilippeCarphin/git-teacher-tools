@@ -68,7 +68,7 @@ will keep you from having to enter your $(tput setaf 5)password$(tput sgr 0) all
 function check_prefix() {
     local prefix=$1
     if [ ! -e $prefix ] ; then
-        echo "directory $prefix does not exist, do you want to create it? :"
+        echo -n "directory $prefix does not exist, do you want to create it?  [y/n] : "
         while read ans ; do
             if [[ $ans == y ]] ; then
                 cmd="mkdir -p $prefix"
