@@ -31,7 +31,7 @@ OPTIONS:
                    instead of run certain commands
         --prefix : Subdirectory where the repos are to be cloned. Implicitely
                    defaults to pwd.
-                "
+                " >&2
 }
 
 
@@ -46,15 +46,15 @@ function suggest_credential_helper(){
     $(tput setab 8)git config credential.helper 'cache --timeout=3600'$(tput sgr 0)
 
 will keep you from having to enter your $(tput setaf 5)password$(tput sgr 0) all the time.
-"
-    echo -n "Do it ? [y/n] "
+" >&2
+    echo -n "Do it ? [y/n] " >&2
     read answer
     if [[ "$answer" != n ]] ; then
         git config credential.helper 'cache --timeout=3600'
         if [[ $? == 0 ]] ; then
-            echo "success setting git credential helper"
+            echo "success setting git credential helper" >&2
         else
-            echo "error while doing git config credential.helper 'cache --timeout=3600"
+            echo "error while doing git config credential.helper 'cache --timeout=3600" >&2
         fi
     fi
 }
@@ -66,7 +66,7 @@ will keep you from having to enter your $(tput setaf 5)password$(tput sgr 0) all
 function check_prefix() {
     local prefix=$1
     if [ ! -e $prefix ] ; then
-        echo -n "directory $prefix does not exist, do you want to create it?  [y/n] : "
+        echo -n "directory $prefix does not exist, do you want to create it?  [y/n] : " >&2
         while read ans ; do
             if [[ $ans == y ]] ; then
                 cmd="mkdir -p $prefix"
@@ -80,7 +80,7 @@ function check_prefix() {
                 exit 0
                 break
             fi
-            echo "directory $prefix does not exist, do you want to create it? :"
+            echo "directory $prefix does not exist, do you want to create it? [y/n] : " >&2
         done
     fi
 }
@@ -149,11 +149,11 @@ done
 # Check some of the options
 ################################################################################
 if [[ "$repo_file" == "" ]] ; then
-    echo "$0 ERROR : Option --repo-file must be specified"
+    echo "$0 ERROR : Option --repo-file must be specified" >&2
     usage
     exit 1
 elif [ ! -e "$repo_file" ] ; then
-    echo "$0 ERROR : File $repo_file doesn't exit"
+    echo "$0 ERROR : File $repo_file doesn't exit" >&2
     usage
     exit 1
 fi
@@ -161,7 +161,7 @@ fi
 if [[ "$command" != "" ]] ; then
     absolute_command=$(absolutize_cmd $command)
     if [[ "$absolute_command" == "" ]] ; then
-        echo "$0 ERROR : no commando $(echo $command | cut -d ' ' -f 1) in path" >&2
+        echo "$0 ERROR : no command $(echo $command | cut -d ' ' -f 1) in path" >&2
         usage >&2
         exit 1
     fi
@@ -193,13 +193,13 @@ while read repo target_dir extra; do # < $repo_file
         target_dir="${prefix}/${target_dir}"
     fi
     if [ -e $target_dir ] ; then
-        echo "$(tput setab 4)$target_dir already exists for $repo$(tput sgr 0)"
+        echo "$(tput setab 4)$target_dir already exists for $repo$(tput sgr 0)" >&2
         if [[ "$skip_if_existing" == true ]] ; then
             continue
         fi
     else
         # Do the cloning ##########################################################
-        echo "$(tput setab 2)Cloning ${repo} into ${target_dir}$(tput sgr 0)"
+        echo "$(tput setab 2)Cloning ${repo} into ${target_dir}$(tput sgr 0)" >&2
         cmd="git clone ${repo} ${target_dir}"
         if [[ "$just_print" == true ]] ; then
             echo "$cmd"
@@ -210,18 +210,20 @@ while read repo target_dir extra; do # < $repo_file
 
     # Run command inside repo ##################################################
     if [[ "$command" != "" ]] ; then
-        echo "$(tput setab 3)Entering directory $target_dir to do $command$(tput sgr 0)"
+        echo "$(tput setab 3)Entering directory $target_dir to do $command$(tput sgr 0)" >&2
         if [[ "$just_print" == true ]] ; then
+            echo "pushd $target_dir"
             echo "$command"
+            echo "popd"
         else
             if pushd $target_dir >/dev/null 2>&1 ; then
                 $command
                 popd 1>/dev/null
-                echo "$(tput setab 3)Leaving directory $target_dir$(tput sgr 0)"
+                echo "$(tput setab 3)Leaving directory $target_dir$(tput sgr 0)" >&2
             else
-                echo "Could not enter directory $target_dir"
+                echo "Could not enter directory $target_dir" >&2
             fi
         fi
     fi
-    echo ""
+    echo "" >&2
 done < $repo_file
