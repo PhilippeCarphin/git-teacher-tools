@@ -1,7 +1,7 @@
 #!/bin/bash
 correction_file=Correction_TP8.txt
 script_pwd=$(dirname $0)
-tp_date="2017-10-27 13:37"
+tp_date="2017-10-31 13:15"
 
 # Do a find command to note all *.o *.hex etc files
 names="-name '*.o' \
@@ -16,10 +16,13 @@ eval find . $names | tee fichiers_indesirables.lst
 # Maybe checout the last commit made before the due date
 # Look atgit checkout $(git rev-list -n 1 --before="2009-07-27 13:37" master)
 # From Stack overflow https://stackoverflow.com/questions/6990484/git-checkout-by-date
-git checkout $(git rev-list -n 1 --before="$tp_date" master) > /dev/null 2>&1
-
-# Create a branch,
-git checkout -b correction_tp8
+rev=$(git rev-list -n 1 --before="$tp_date" master)
+if [[ "$rev" == "" ]] ; then
+	git checkout -b TP8_NOT_FOUND
+else
+	git branch correction_tp8 $rev
+	git checkout correction_tp8
+fi
 
 # Drop a correction file in the right place
 team=$(basename $PWD | sed 's/.*inf1995-\([0-9]*\)$/\1/')
