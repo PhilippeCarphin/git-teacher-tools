@@ -238,7 +238,7 @@ while read repo target_dir extra; do # < $repo_file
             echo "popd"
         else
             if pushd $target_dir >/dev/null 2>&1 ; then
-                $absolute_command
+                eval $absolute_command
                 popd 1>/dev/null
                 echo "$(tput setab 3)Leaving directory $target_dir$(tput sgr 0)" >&2
             else
