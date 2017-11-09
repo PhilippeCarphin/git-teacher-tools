@@ -188,13 +188,11 @@ fi
 
 if [[ "$prefix" == "" ]] ; then
     read a b c <$repo_file
-    if [[ "$a" == '#' ]] ; then
-        if [[ "$b" == prefix ]] ; then
-            prefix=$c
-        fi
+    if [[ "$a" == '#' ]] && [[ "$b" == prefix ]] ; then
+		prefix=$c
+	else
+		prefix=./repos
     fi
-else
-    prefix=./repos
 fi
 check_prefix $prefix
 ################################################################################
