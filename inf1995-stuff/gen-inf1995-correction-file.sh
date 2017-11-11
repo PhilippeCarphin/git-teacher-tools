@@ -39,7 +39,7 @@ Modularité et comprehension: (/5)
         permet de bien résoudre le problème        (2 points):
 
 Fonctionnalité:(/10)
-  Soumission réussie sous SVN (bon endroit,
+  Soumission réussie sous GIT (bon endroit,
         sans fichiers inutiles)                    (3 points):
   Compilation sans \"warnings\" et sans erreurs      (2 point) :
   Fonctionnement correct (évalué en \"boite noire\") (5 points):
