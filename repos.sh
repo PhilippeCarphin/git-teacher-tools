@@ -33,7 +33,7 @@ OPTIONS:
 	--repo-file : the file containing a list of repos to clone.  If this option
 		is not specified, $0 will look for a file named repo-file.txt
 
-	--command : we can run a command inside each repository that we clone.  This
+	--command : we can run a command inside each repository as we clone.  This
 		is only valid if doing
 
 				$0 clone
@@ -47,6 +47,14 @@ OPTIONS:
 
 	--just-print : for experimenting with modifications of this script, print
 		instead of run certain commands
+
+NOTE:
+
+	The script will add the PWD that it is called from so that your custom
+	scripts will be findable despite PWD changing during execution.
+
+	Therefore, custom scripts that will be called should be in your PWD when you
+	call repos, or they should be somewhere else in your PATH.
 		" >&2
 }
 
@@ -101,24 +109,6 @@ function check_prefix() {
             fi
             echo -n "directory $prefix does not exist, do you want to create it? [y/n] : " >&2
         done
-    fi
-}
-
-################################################################################
-# Makes the path of a command absolute.  This is because the command may be the
-# path to a script that is not in PATH.  Since we change directories during this
-# script, such a relative path must be converted to an absolute path.
-################################################################################
-absolutize_cmd(){
-    cmd="$(which $1 2>/dev/null)"
-    if [[ "$cmd" == "" ]] ; then
-        echo ""
-        return
-    fi
-    echo -n "$cmd"
-    shift
-    if [[ $# -gt 0 ]] ; then
-        echo -n " $@"
     fi
 }
 
@@ -197,13 +187,9 @@ elif [ ! -e "$repo_file" ] ; then
     exit 1
 fi
 
-if [[ "$command" != "" ]] ; then
-    absolute_command=$(absolutize_cmd $command)
-    if [[ "$absolute_command" == "" ]] ; then
-        echo "$0 ERROR : no command $(echo $command | cut -d ' ' -f 1) in path" >&2
-        usage >&2
-        exit 1
-    fi
+if [[ "$command" == "" ]] && [[ "$sub_command" == do ]] ; then
+	echo "$0 ERROR : A command must be specified with sub_command do"
+	exit 1
 fi
 
 suggest_credential_helper
@@ -220,6 +206,22 @@ check_prefix $prefix
 ################################################################################
 # For each line do our thing
 ################################################################################
+# Add PWD to path so that our scripts are findable despite the fact that PWD will
+# change during execution of this script
+export PATH=$PWD:$PATH
+
+root_pwd=$PWD
+pushd $prefix >/dev/null
+if ! which $command > /dev/null 2>&1 ; then
+	echo "	Your command was not found.  If it is a local script, pleas note that
+	this script adds $root_pwd to PATH, so write the filename of the script without
+	'./'.
+
+	This is because PWD will change during execution, so paths relative
+	to PWD will be useless."
+	exit 1
+fi
+popd 2>/dev/null
 while read repo target_dir extra; do # < $repo_file
     # Ignore lines starting with '#'
     if [[ "$repo" = \#* ]] || [[ "$repo" == "" ]] ; then
@@ -247,15 +249,15 @@ while read repo target_dir extra; do # < $repo_file
 			;;
 		do)
 			# Run command inside repo ##################################################
-			if [[ "$absolute_command" != "" ]] ; then
+			if [[ "$command" != "" ]] ; then
 				echo "$(tput setab 3)Entering directory $target_dir to do $absolute_command$(tput sgr 0)" >&2
 				if [[ "$just_print" == true ]] ; then
 					echo "pushd $target_dir"
-					echo "$absolute_command"
+					echo "$command"
 					echo "popd"
 				else
 					if pushd $target_dir >/dev/null 2>&1 ; then
-						eval $absolute_command
+						eval $command
 						popd 1>/dev/null
 						echo "$(tput setab 3)Leaving directory $target_dir$(tput sgr 0)" >&2
 					else

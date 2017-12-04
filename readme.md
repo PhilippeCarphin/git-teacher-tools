@@ -60,11 +60,15 @@ dossier (PWD) pendant son exécution, faire
 
 ne fonctionnera pas.
 
-La solution est d'ajouter temporairement le dossier courant au PATH avant de
-faire la command:
+Pour cette raison, le script repos.sh ajoute automatiquement le PWD au PATH
+durant son exécution. Ainsi, il faut faire
 
-	$ PATH=$PWD:$PATH
-	$ repos.sh do ./mon-script.sh
+	$ repos.sh do mon-script.sh
+
+et si mon-script.sh prend des options, il faut les grouper avec la commande en
+utilisant des guillements.
+
+	$ repos.sh do 'mon-script.sh --opt_mon_script abc'
 
 Autres gogosses pour INF1995
 ============================
