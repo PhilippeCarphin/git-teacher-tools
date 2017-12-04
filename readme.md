@@ -1,15 +1,27 @@
 README
 
-git-cloner.sh
-=============
+repos.sh
+========
 
 Utilitaire simple pour cloner une liste d'etrepôts git et exécuter une commande dans chaque entrepôt.
 
 Ex : la commande
 
-	./git-cloner.sh --repo-file <repo_file> [--command <cmd>]
+	./repos.sh [clone | do <command>]
 
-Clone tous les entrepôts listés dans le fichier <repo_file>.  Faire ./git-cloner.sh --help pour plus d'options.
+clone : Clone tous les entrepôts listés dans le fichier repo-file.txt
+
+do : Rentre dans chaque entrepot et exécute la commande <command>.  La commande
+doit être un seul argument pour la commande repos.sh, donc pour empêcher le
+shell de briser notre commande en plusieurs mots, il faut faire:
+
+	$ ./repos.sh do 'git push origin correction_tp8'
+
+faire
+
+	$ ./repos.sh --help
+
+pour la liste complète des options.
 
 repo-file
 ---------
@@ -17,15 +29,17 @@ repo-file
 un fichier dont chaque ligne est le URL d'un entrepôt git et optionnellement un nom à donner à l'entrepôt clôné (séparé par un espace).
 
 Ex :
-
+	# prefix sous-dossier
 	https://githost.gi.polymtl.ca/git/inf1995-1041 1041
 	https://githost.gi.polymtl.ca/git/inf1995-1225 1225
 
-ou
-    https://githost.gi.polymtl.ca/git/inf1995-1041 
-	https://githost.gi.polymtl.ca/git/inf1995-1225 
+Faire
 
-Dans le premier cas, l'entrepôt sera clôné dans le dossier 1041 alors que dans le deuxième, ce sera dans inf1995-1041 (le nom donné automatiquement par git).
+	$ ./repos.sh clone
+
+fera l'équivalent de
+
+	$ git clone https://githost.gi.polymtl.ca/git/inf1995-1041 sous-dossier/1041
 
 Exemple d'utilisation pour le cours INF1995:
 ============================================
@@ -39,9 +53,18 @@ Exemple de script qui peut être comme commande à git-cloner.sh:
 - créer et faire un checkout d'une branche
 - générer un fichier avec une grille de correction
 
-utiliser l'option --command ./inf1995-stuff/init-correction-inf1995.sh avec  git-cloner.sh pour définir cette commande comme la commande à exécuter dans chaque entrepôt.
+NOTE: Si on veut exécuter un script personnel, puisque repos.sh change de
+dossier (PWD) pendant son exécution, faire 
 
-Noter que si la commande est un path relatif comme ici, git-cloner.sh va transformer le premier mot de la commande en path absolu pour éviter que le changement de PWD lorsque le script entre dans les dossiers clônés ne cause problème.
+	$ repos.sh do ./mon-script.sh
+
+ne fonctionnera pas.
+
+La solution est d'ajouter temporairement le dossier courant au PATH avant de
+faire la command:
+
+	$ PATH=$PWD:$PATH
+	$ repos.sh do ./mon-script.sh
 
 Autres gogosses pour INF1995
 ============================
@@ -59,8 +82,8 @@ Output un fichier de correction paramétré sur stdout:
 inf1995-team-filter.sh
 ----------------------
 
-Si tu copy paste la page sur le site du cours dans un fichier texte,
-ceci va te permettre de générer automatiquement un "repo-file" pour git-cloner.sh.
+Si on copy paste la page sur le site du cours dans un fichier texte,
+ceci va permettre de générer automatiquement un "repo-file" pour repos.sh.
 
 	inf1995-team-filter.sh < equipes_4.txt > repo_file.txt
 
