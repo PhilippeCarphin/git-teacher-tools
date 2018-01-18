@@ -25,7 +25,7 @@ DESCRIPTION:
 
 		git clone \$URL \$prefix/\$target_dir
 
-	The git do command will cd into each of the \$prefix/\$target_dir and
+	The repos do command will cd into each of the \$prefix/\$target_dir and
 	execute the command that it receives as an argument.
 
 OPTIONS:
@@ -154,6 +154,13 @@ do
             command="$optarg"
             shift
             ;;
+		--submodule)
+			if [[ $sub_command != clone ]] ; then
+				echo "ERROR"
+				exit 1
+			fi
+			submodule=true
+			;;
         --just-print) # Both
             just_print=true
             ;;
@@ -203,24 +210,15 @@ else
 fi
 
 check_prefix $prefix
+
+if [[ "$submodule" == true ]] ; then
+	pushd $prefix 2>/dev/null
+	git init
+	popd 2>/dev/null
+fi
 ################################################################################
 # For each line do our thing
 ################################################################################
-# Add PWD to path so that our scripts are findable despite the fact that PWD will
-# change during execution of this script
-export PATH=$PWD:$PATH
-
-root_pwd=$PWD
-pushd $prefix >/dev/null
-if ! which $command > /dev/null 2>&1 ; then
-	echo "	Your command was not found.  If it is a local script, pleas note that
-	this script adds $root_pwd to PATH, so write the filename of the script without
-	'./'.
-
-	This is because PWD will change during execution, so paths relative
-	to PWD will be useless."
-	exit 1
-fi
 popd 2>/dev/null
 while read repo target_dir extra; do # < $repo_file
     # Ignore lines starting with '#'
@@ -239,12 +237,17 @@ while read repo target_dir extra; do # < $repo_file
 	case $sub_command in
 		clone)
 			# Do the cloning ##########################################################
-			echo "$(tput setab 2)Cloning ${repo} into ${target_dir}$(tput sgr 0)" >&2
-			cmd="git clone ${repo} ${target_dir}"
-			if [[ "$just_print" == true ]] ; then
-				echo "$cmd"
+			if [[ "$submodule" == true ]] ; then
+				echo "$(tput setab 2)Adding ${repo} as submodule$(tput sgr 0)" >&2
+				git submodule add ${repo} ${target_dir}
 			else
-				$cmd
+				echo "$(tput setab 2)Cloning ${repo} into ${target_dir}$(tput sgr 0)" >&2
+				cmd="git clone ${repo} ${target_dir}"
+				if [[ "$just_print" == true ]] ; then
+					echo "$cmd"
+				else
+					$cmd
+				fi
 			fi
 			;;
 		do)
