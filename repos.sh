@@ -210,18 +210,6 @@ check_prefix $prefix
 # change during execution of this script
 export PATH=$PWD:$PATH
 
-root_pwd=$PWD
-pushd $prefix >/dev/null
-if ! which $command > /dev/null 2>&1 ; then
-	echo "	Your command was not found.  If it is a local script, pleas note that
-	this script adds $root_pwd to PATH, so write the filename of the script without
-	'./'.
-
-	This is because PWD will change during execution, so paths relative
-	to PWD will be useless."
-	exit 1
-fi
-popd 2>/dev/null
 while read repo target_dir extra; do # < $repo_file
     # Ignore lines starting with '#'
     if [[ "$repo" = \#* ]] || [[ "$repo" == "" ]] ; then
