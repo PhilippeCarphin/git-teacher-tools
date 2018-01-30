@@ -1,15 +1,18 @@
 #!/bin/bash
+echo "STARTING $0"
 ################################################################################
 # SETUP VARIABLES :
 ################################################################################
 # tp_date : Used for working with deadlines with git.  The script will checkout
 # the last commit made before this date.  Leave blank to work with origin/HEAD
 # Example format : tp_date="2017-10-31 13:15"
-tp_date=""
+tp_date="2018-02-01 13:05"
 
 # tp_name : Used to name certain things like the correction file, and the branch
 # that will be created (if any)
-tp="code_final"
+tp="tp3"
+tp_dir=tp/tp3
+tp_probs="pb1 pb2"
 
 # bad_extensions : The list of extension
 bad_extensions=".o .a .d .hex .out .out.map"
@@ -18,7 +21,7 @@ bad_extensions=".o .a .d .hex .out .out.map"
 # Note team will be determined automatically
 correcter="Philippe Carphin"
 section=01
-tp_name="Code final"
+tp_name="TP3 machines à état"
 
 ################################################################################
 # Calculated variables
