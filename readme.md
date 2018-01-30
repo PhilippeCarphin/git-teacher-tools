@@ -29,9 +29,9 @@ repo-file
 un fichier dont chaque ligne est le URL d'un entrepôt git et optionnellement un nom à donner à l'entrepôt clôné (séparé par un espace).
 
 Ex :
-	# prefix sous-dossier
-	https://githost.gi.polymtl.ca/git/inf1995-1041 1041
-	https://githost.gi.polymtl.ca/git/inf1995-1225 1225
+\# prefix sous-dossier
+https://githost.gi.polymtl.ca/git/inf1995-1041 1041
+https://githost.gi.polymtl.ca/git/inf1995-1225 1225
 
 Faire
 
