@@ -1,0 +1,50 @@
+Bienvenue	   Tristan	01
+   Cheniti	   Zakaria Hicham	01
+   Collin-Verreault	   Yannik	02
+   Kiriakos	   Myriam	02
+   Bisson-Grégoire	   Gabriel	03
+   Piette	   Charles	03
+   Jobin Fauvel	   Charles	04
+   Kodjo	   Muriel	04
+   Jaulent	   Lucas	05
+   Juzyna Puccetti	   Matthieu	05
+   Oliveira-Silva	   Michael	06
+   Vu	   Alexandre	06
+   Decian	   Jean	07
+   Potvin	   Anthony	07
+   Ahmani	   Oussama	08
+   Robillard	   Antoine	08
+   Jacob	   Marc-Antoine	09
+   Mansour	   Hamdi	09
+   Faure	   Gaspar	10
+   Kamgain-Djoko	   Kuchue	10
+   Anctil	   Jean-Philippe	11
+   Geffroy	   Grégoire	11
+   Lapierre	   Alexis	12
+   Normand	   Nicolas	12
+   Camiré	   Thomas	13
+   Plante	   Antoine	13
+   Abourjaili-Bilodeau	   Raphaël	14
+   Leclair	   Hugo	14
+   Ben Salah	   Omar	15
+   Ben Salem	   Senda	15
+   Burwash	   Stéphane	16
+   Hélias	   Jonathan	16
+   Guerrier	   Esther	17
+   Lafleur	   Daphné	17
+   Demanche	   Jean-Nicolas	18
+   Lampron	   Guillaume	18
+   Nicolae	   Christopher	19
+   Tremblay-Noel	   Olivier	19
+   Brisseau	   Horby	20
+   Cloutier	   Philippe	20
+   Beaudoin-Dion	   Nathanaël	21
+   Laferrière	   Thomas	21
+   Falardeau	   Alexandre	22
+   Kirby McGregor	   Evan	22
+   Benzekri	   Driss	23
+   Paquette	   Gabriel	23
+   Belhadia	   Imrane	26
+   Dally-Bélanger	   Pascal	26
+   Diawara	   Abdourahmane	28
+   Page	   Nicolas	28
