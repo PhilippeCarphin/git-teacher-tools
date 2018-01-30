@@ -92,4 +92,5 @@ echo "
 ====================== Fichiers Indésirables ===================================
 " >> $correction_file
 cat fichiers_indesirables.lst  >> $correction_file
+rm -f fichiers_indesirables.lst
 
