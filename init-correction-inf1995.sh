@@ -94,3 +94,22 @@ echo "
 cat fichiers_indesirables.lst  >> $correction_file
 rm -f fichiers_indesirables.lst
 
+# rendre le path de correction file absolu car on change de dossier
+root=$PWD
+correction_file=$PWD/$correction_file
+echo "
+====================== Output de make pour les problemes =======================
+" >> $correction_file
+for pb in $tp_probs ; do
+	dir=$tp_dir/$pb
+	if pushd $dir > /dev/null 2>&1 ; then
+		make clean > /dev/null 2>&1
+		echo "============== output make dans $dir ============================" >> $correction_file
+		make >> $correction_file 2>&1
+		popd
+	else
+		echo "======= $dir introuvable ========" >> $correction_file
+	fi
+done
+
+echo "$0 DONE"
