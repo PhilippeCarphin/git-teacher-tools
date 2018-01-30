@@ -28,9 +28,9 @@ repo-file
 
 un fichier dont chaque ligne est le URL d'un entrepôt git et optionnellement un nom à donner à l'entrepôt clôné (séparé par un espace).
 
-Ex :
+Ex : si notre fichier repo-file.txt est
 
-	# prefix sous-dossier
+	# prefix entrepots-etudiants
 	https://githost.gi.polymtl.ca/git/inf1995-1041 1041
 	https://githost.gi.polymtl.ca/git/inf1995-1225 1225
 
@@ -40,7 +40,21 @@ Faire
 
 fera l'équivalent de
 
-	$ git clone https://githost.gi.polymtl.ca/git/inf1995-1041 sous-dossier/1041
+	$ git clone https://githost.gi.polymtl.ca/git/inf1995-1041 entrepots-etudiants/1041
+	$ git clone https://githost.gi.polymtl.ca/git/inf1995-1225 entrepots-etudiants/1225
+
+Ensuite, la commande
+
+	$ ./repos.sh do 'ls -l'
+
+fera l'équivalent de
+
+	$ pushd entrepots-etudiants/1041
+	$ ls -l
+	$ popd
+	$ pushd entrepots-etudiants/1225
+	$ ls -l
+	$ popd
 
 Exemple d'utilisation pour le cours INF1995:
 ============================================
