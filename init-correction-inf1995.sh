@@ -56,7 +56,7 @@ fi
 # 1) Création du fichier de correction #########################################
 team=$(basename $PWD | sed 's/.*inf1995-\([0-9]*\)$/\1/')
 gen-inf1995-correction-file.sh \
-	--correcter "Philippe Carphin" \
+	--correcter "$correcter" \
 	--team $team \
 	--section $section \
 	--tp "$tp" \
