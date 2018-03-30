@@ -62,6 +62,11 @@ gen-inf1995-correction-file.sh \
 	--tp "$tp" \
 > $correction_file
 
+echo "
+======================= Basé sur le commit suivant =============================
+" >> $correction_file
+git log -1 >> $correction_file
+
 # 2) Ajout d'info sur les gitignores ###########################################
 echo "
 ======================= Présence de gitignore(s) ===============================
