@@ -32,7 +32,7 @@ def fill_in_grades(workbook, output_name):
     Fill in all the rows from FIRST_ROW to LAST_ROW inclusively
     """
     wb = load_workbook(workbook)
-    s = wb.get_active_sheet()
+    s = wb.active
     for row_number in range(FIRST_ROW, LAST_ROW+1):
         try:
             fill_in_row(s, row_number)
