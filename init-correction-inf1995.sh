@@ -92,14 +92,20 @@ fi >> $correction_file
 
 # 3) Ajout de l'info sur les fichiers indésirables #############################
 
-search_string=""
-tree_string=""
-for ext in $bad_extensions ; do
-	search_string="-name '*${ext}'${search_string:+ -o ${search_string}}"
-	tree_string="*${ext}${tree_string:+|${tree_string}}"
-done
-eval find . $search_string | tee fichiers_indesirables.lst
-# tree -P "${tree_string}" --prune | tee fichiers_indesirables.lst
+# search_string=""
+# tree_string=""
+# for ext in $bad_extensions ; do
+# 	search_string="-name '*${ext}'${search_string:+ -o ${search_string}}"
+# done
+# eval find . $search_strina | tee fichiers_indesirables.lst
+
+# Tree display
+# for ext in $bad_extensions ; do
+# 	tree_string="*${ext}${tree_string:+|${tree_string}}"
+# done
+# tree -P "${tree_string}" --prune tee fichiers_indesirables.lst
+
+git ls-files -i --exclude-from=$root_pwd/bad-files.txt | tee fichiers_indesirables.lst
 
 echo "
 ====================== Fichiers Indésirables ===================================
