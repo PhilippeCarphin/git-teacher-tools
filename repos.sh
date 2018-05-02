@@ -211,8 +211,18 @@ check_prefix $prefix
 export PATH=$PWD:$PATH
 
 while read repo target_dir extra; do # < $repo_file
+
+	# Igrnore empty lines
+	if [[ "$repo" == "" ]] ; then
+		continue
+	fi
+
     # Ignore lines starting with '#'
-    if [[ "$repo" = \#* ]] || [[ "$repo" == "" ]] ; then
+    # Allowing prefix to be changed more than once
+    if [[ "$repo" = \#* ]] ; then
+        if [[ "$target_dir" == prefix ]] ; then
+            prefix="$extra"
+        fi
         continue
     fi
 

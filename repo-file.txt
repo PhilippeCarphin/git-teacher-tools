@@ -1,0 +1,21 @@
+# prefix correction_tp8/section-02
+https://githost.gi.polymtl.ca/git/inf1995-2441 2441
+https://githost.gi.polymtl.ca/git/inf1995-2532 2532
+https://githost.gi.polymtl.ca/git/inf1995-27107 27107
+https://githost.gi.polymtl.ca/git/inf1995-2934 2934
+https://githost.gi.polymtl.ca/git/inf1995-3036 3036
+https://githost.gi.polymtl.ca/git/inf1995-3137 3137
+https://githost.gi.polymtl.ca/git/inf1995-3538 3538
+https://githost.gi.polymtl.ca/git/inf1995-3940 3940
+
+# prefix correction_tp8/section-06
+https://githost.gi.polymtl.ca/git/inf1995-4254 4254
+https://githost.gi.polymtl.ca/git/inf1995-4347 4347
+https://githost.gi.polymtl.ca/git/inf1995-4455 4455
+https://githost.gi.polymtl.ca/git/inf1995-4556 4556
+https://githost.gi.polymtl.ca/git/inf1995-46114 46114
+https://githost.gi.polymtl.ca/git/inf1995-4857 4857
+https://githost.gi.polymtl.ca/git/inf1995-4951 4951
+https://githost.gi.polymtl.ca/git/inf1995-5060 5060
+https://githost.gi.polymtl.ca/git/inf1995-5259 5259
+https://githost.gi.polymtl.ca/git/inf1995-53104 53104
