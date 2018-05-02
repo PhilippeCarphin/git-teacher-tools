@@ -105,7 +105,7 @@ fi >> $correction_file
 # done
 # tree -P "${tree_string}" --prune tee fichiers_indesirables.lst
 
-git ls-files -i --exclude-from=$root_pwd/bad-files.txt | tee fichiers_indesirables.lst
+git ls-files -i --exclude-from=$root_pwd/bad-files.gitignore | tee fichiers_indesirables.lst
 
 echo "
 ====================== Fichiers Indésirables ===================================
