@@ -53,6 +53,48 @@ Commentaires du correcteur:
 
 "
 
+text_tp8="Polytechnique Montréal
+
+Département de génie informatique et génie logiciel
+
+INF1995: Projet initial en ingénierie informatique
+         et travail en équipe
+
+Grille de correction des programmes:
+
+Identification:
+  Travail Pratique # : __TRAVAIL_PRATIQUE__
+  Section #  : __SECTION__
+  Équipe #   : __TEAM_NUMBER__
+  Correcteur : __CORRECTEUR__
+
+Code
+– La qualités et le choix de vos portions de code choisies
+                                               ( 5 points sur 20 )
+– La qualités de vos modifications aux Makefiles
+                                               ( 5 points sur 20 )
+
+Le rapport ( 7 points sur 20 )
+– Explications cohérentes par rapport au code retenu pour former la librairie
+                                                        (2 points)
+
+– Explications cohérentes par rapport aux Makefiles modifiés
+                                                        (2 points)
+– Explications claires avec un bon niveau de détails
+                                                        (2 points)
+– Bon français                                           (1 point)
+
+– Bonne soumission de l'ensemble du code (compilation sans
+  erreurs, …) et du rapport selon le format demandé
+                                               ( 3 points sur 20 )
+
+Total:
+
+
+COmmentaires du correcteur:
+
+"
+
 ################################################################################
 # Option parsing with error checking
 ################################################################################
@@ -110,7 +152,7 @@ fi
 # Use sed to replace pre-defined markers with the values given to the script and
 # output to stdout
 ################################################################################
-echo "$text" |
+echo "$text_tp8" |
 	sed "s/__TEAM_NUMBER__/$team/g" |
 	sed "s/__SECTION__/$section/g" |
 	sed "s/__TRAVAIL_PRATIQUE__/$tp/g" |
