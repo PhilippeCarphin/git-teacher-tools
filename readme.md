@@ -56,6 +56,27 @@ fera l'équivalent de
 	$ ls -l
 	$ popd
 
+Excel-helper (pour rentrer les notes)
+=====================================
+
+La pire partie de toute, c'est transférer les notes à la main dans le fichier
+excel.
+
+Pour ce faire, jetex un coup d'oeil sur le fichier 
+
+    fill-in-inf1995-excel-doc.py
+
+Ça prend python3 et openpyxl
+
+    $ pip3 install openpyxl
+
+On a juste à ajuster les constantes au début du fichier selon l'emplacement de
+nos entrepôts git d'étudiants et exécuter le script.
+
+Le script va, pour chaque rangée, lire le groupe, aller charcher dans le total
+points dans le fichier de correction de l'équipe et l'inscrire dans le fichier
+excel.
+
 Exemple d'utilisation pour le cours INF1995:
 ============================================
 
