@@ -10,3 +10,5 @@ output.log
 *.xlsx
 correction_tp8
 .idea
+correction_tp3
+*.tar
